@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Test Custom Challenge</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f4f8;
+        }
+
+        .modal {
+            background: #fff;
+            width: 100%;
+            max-width: 900px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Header with blue background */
+        .modal-header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            font-size: 20px;
+            margin: 0;
+        }
+
+        /* Close button */
+        .close-btn {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .card {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card img {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 10px;
+        }
+
+        .card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .badge {
+            font-size: 12px;
+            padding: 3px 6px;
+            border-radius: 4px;
+            color: #fff;
+            margin-left: 5px;
+        }
+
+        .mocha {
+            background-color: #8d6748;
+        }
+
+        .pytest {
+            background-color: #3475a7;
+        }
+
+        .phpunit {
+            background-color: #4a6da7;
+        }
+
+        .junit {
+            background-color: #ff6f61;
+        }
+
+        /* Button area */
+        .button-group {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        .btn {
+            padding: 8px 15px;
+            font-size: 14px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            margin: 5px;
+            flex: 1;
+            max-width: 100px;
+        }
+
+        .continue {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .guide {
+            background-color: #f0f4f8;
+            color: #007bff;
+            border: 1px solid #007bff;
+        }
+
+        .continue:hover, .guide:hover {
+            opacity: 0.9;
+        }
+
+        /* Second Modal Body and Button Styles */
+        .modal-body {
+            padding: 20px;
+        }
+
+        .modal-body input[type="text"],
+        .modal-body select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .modal-footer {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .open-ide-btn {
+            background-color: #1a2a33;
+            color: #fff;
+            font-size: 16px;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .open-ide-btn:hover {
+            background-color: #162128;
+        }
+    </style>
+</head>
+<body>
+    <!-- First Modal (Card Selection) -->
+    <div class="modal" id="initialModal">
+        <div class="modal-header">
+            <h2>New unit test custom challenge</h2>
+            <button class="close-btn">&times;</button>
+        </div>
+        <div class="grid-container">
+            <!-- JavaScript (Mocha) Card -->
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript Icon">
+                <h3>JavaScript <span class="badge mocha">Mocha</span></h3>
+                <p>Use the Mocha testing framework and create unit tests to grade solutions.</p>
+                <div class="button-group">
+                    <button class="btn continue" onclick="openSecondModal()">Continue</button>
+                    <button class="btn guide">Guide</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg" alt="TypeScript Icon">
+                <h3>TypeScript <span class="badge mocha">Mocha</span></h3>
+                <p>Use the Mocha testing framework and create unit tests to grade solutions.</p>
+                <div class="button-group">
+                    <button class="btn continue" onclick="openSecondModal()">Continue</button>
+                    <button class="btn guide">Guide</button>
+                </div>
+            </div>
+            <!-- Python (Pytest) Card -->
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python Icon">
+                <h3>Python <span class="badge pytest">Pytest</span></h3>
+                <p>Use the Pytest testing framework and create unit tests to grade solutions.</p>
+                <div class="button-group">
+                    <button class="btn continue" onclick="openSecondModal()">Continue</button>
+                    <button class="btn guide">Guide</button>
+                </div>
+            </div>
+            <!-- PHP (PHPUnit) Card -->
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/PHP-logo.svg" alt="PHP Icon">
+                <h3>PHP <span class="badge phpunit">PHPUnit</span></h3>
+                <p>Use the PHPUnit testing framework and create unit tests to grade solutions.</p>
+                <div class="button-group">
+                    <button class="btn continue" onclick="openSecondModal()">Continue</button>
+                    <button class="btn guide">Guide</button>
+                </div>
+            </div>
+            <!-- Java (JUnit) Card -->
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/de/e/e1/Java-Logo.svg" alt="Java Icon">
+                <h3>Java <span class="badge junit">JUnit</span></h3>
+                <p>Use the JUnit testing framework and create unit tests to grade solutions.</p>
+                <div class="button-group">
+                    <button class="btn continue" onclick="openSecondModal()">Continue</button>
+                    <button class="btn guide">Guide</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/74/Kotlin_Icon.png" alt="Kotlin Icon">
+                <h3>Kotlin <span class="badge junit">JUnit</span></h3>
+                <p>JUnit is a popular unit-testing framework in the Kotlin ecosystem.</p>
+                <div class="button-group">
+                    <button class="btn continue" onclick="openSecondModal()">Continue</button>
+                    <button class="btn guide">Guide</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Second Modal (Form) -->
+    <div class="modal" id="secondModal" style="display: none;">
+        <div class="modal-header">
+            <h2>New unit test custom challenge</h2>
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+        </div>
+
+        <div class="modal-body">
+            <input type="text" placeholder="Demo">
+            <label for="difficulty">Difficulty:</label>
+            <select id="difficulty">
+                <option>Easy</option>
+                <option>Medium</option>
+                <option>Hard</option>
+            </select>
+            <input type="text" placeholder="Optional short description about this challenge...">
+        </div>
+
+        <div class="modal-footer">
+            <button class="open-ide-btn">Click here to open the Java (JUnit) IDE and edit your code &rarr;</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to open the second modal and hide the first one
+        function openSecondModal() {
+            document.getElementById('initialModal').style.display = 'none';
+            document.getElementById('secondModal').style.display = 'block';
+        }
+
+        // Function to close the modal (optional, if you want to close with the "x" button)
+        function closeModal() {
+            document.getElementById('secondModal').style.display = 'none';
+            document.getElementById('initialModal').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
