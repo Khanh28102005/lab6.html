@@ -183,6 +183,151 @@
         .open-ide-btn:hover {
             background-color: #162128;
         }
+        *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding-top: 20px;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 700px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .container h2 {
+      font-size: 18px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    .form-group input[type="text"],
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      color: #333;
+      background-color: #f9f9f9;
+    }
+
+    .form-group select {
+      background-color: #fff;
+    }
+
+    .form-group textarea {
+      height: 150px;
+      resize: vertical;
+    }
+
+    .note-info {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #f0f0f8;
+      border-left: 4px solid #0073e6;
+      font-size: 13px;
+      color: #555;
+    }
+
+    .divider {
+      margin: 20px 0;
+      padding: 10px;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      font-size: 14px;
+      font-weight: bold;
+      border-radius: 4px;
+    }
+
+    .test-cases-section {
+      margin-top: 20px;
+    }
+
+    .test-cases-section h3 {
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    .test-cases {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .test-cases input[type="text"] {
+      width: 78%;
+      padding: 10px;
+      margin-right: 10px;
+      font-size: 14px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      color: #333;
+      background-color: #f9f9f9;
+    }
+
+    .test-cases .output {
+      width: 18%;
+      text-align: right;
+      padding: 10px;
+      font-size: 14px;
+      color: #333;
+      background-color: #f0f0f0;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .btn-container {
+      display: flex;
+      justify-content: flex-start;
+      margin-top: 20px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      background-color: #0073e6;
+      color: #fff;
+      font-size: 14px;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 4px;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn:hover {
+      background-color: #005bb5;
+    }
     </style>
 </head>
 <body>
@@ -273,9 +418,112 @@
         </div>
 
         <div class="modal-footer">
-            <button class="open-ide-btn">Click here to open the Java (JUnit) IDE and edit your code &rarr;</button>
+            <button class="open-ide-btn" onclick="openthirdModal()">Click here to open the Java (JUnit) IDE and edit your code &rarr;</button>
         </div>
     </div>
+
+    <div class="container" id="thirdModal" style="display: none;">
+        <div class="modal-header">
+        <h2>Edit Custom Challenge</h2>
+        <button class="close-btn" onclick="closeModal1()">&times;</button>
+    </div>
+    
+        <!-- Phần đầu tiên -->
+        <div class="form-group">
+          <label for="title">Title:</label>
+          <input type="text" id="title" value="DSA ET Opt7 01">
+        </div>
+    
+        <div class="form-group">
+          <label for="difficulty">Difficulty:</label>
+          <select id="difficulty">
+            <option value="easy" selected>Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+        </div>
+    
+        <div class="form-group">
+          <label for="description">Short description:</label>
+          <input type="text" id="description" value="This is a private challenge">
+        </div>
+    
+        <div class="form-group">
+          <label for="problem">Problem Statement:</label>
+          <textarea id="problem"></textarea>
+        </div>
+    
+        <div class="note-info">
+          Starter code will automatically be generated for all 18 coding languages
+        </div>
+    
+        <!-- Thanh màu đen -->
+        <div class="divider">
+          Required Test Cases
+        </div>
+    
+        <!-- Phần thứ hai: Required Test Cases -->
+        <div class="test-cases-section">
+          <div class="form-group">
+            <label for="input-type">Input type:</label>
+            <select id="input-type">
+              <option value="array">Array of integers</option>
+              <option value="string">String</option>
+              <option value="integer">Integer</option>
+            </select>
+          </div>
+    
+          <div class="form-group">
+            <label for="output-type">Output type:</label>
+            <select id="output-type">
+              <option value="integer">Integer</option>
+              <option value="string">String</option>
+              <option value="array">Array</option>
+            </select>
+          </div>
+    
+          <div class="test-cases">
+            <input type="text" placeholder="">
+            <div class="output"></div>
+          </div>
+          <div class="test-cases">
+            <input type="text" placeholder="">
+            <div class="output"></div>
+          </div>
+          <div class="test-cases">
+            <input type="text" placeholder="">
+            <div class="output"></div>
+          </div>
+          <div class="test-cases">
+            <input type="text" placeholder="">
+            <div class="output"></div>
+          </div>
+          <div class="test-cases">
+            <input type="text" placeholder="">
+            <div class="output"></div>
+          </div>
+          <div class="test-cases">
+            <input type="text" placeholder="">
+            <div class="output"></div>
+          </div>
+          <div class="test-cases">
+            <input type="text" placeholder="">
+            <div class="output"></div>
+          </div>
+          <div class="test-cases">
+            <input type="text" placeholder="">
+            <div class="output"></div>
+          </div>
+          <div class="test-cases">
+            <input type="text" placeholder="">
+            <div class="output"></div>
+          </div>
+        </div>
+    
+        <div class="btn-container">
+          <button class="btn">Update custom challenge</button>
+        </div>
+      </div>
 
     <script>
         // Function to open the second modal and hide the first one
@@ -283,10 +531,18 @@
             document.getElementById('initialModal').style.display = 'none';
             document.getElementById('secondModal').style.display = 'block';
         }
+        function openthirdModal() {
+            document.getElementById('secondModal').style.display = 'none';
+            document.getElementById('thirdModal').style.display = 'block';
+        }
 
         // Function to close the modal (optional, if you want to close with the "x" button)
         function closeModal() {
             document.getElementById('secondModal').style.display = 'none';
+            document.getElementById('initialModal').style.display = 'block';
+        }
+        function closeModal1() {
+            document.getElementById('thirdModal').style.display = 'none';
             document.getElementById('initialModal').style.display = 'block';
         }
     </script>
